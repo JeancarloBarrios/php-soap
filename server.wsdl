@@ -1,0 +1,510 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="MainService" targetNamespace="http://tempuri.org/">
+<wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+<xs:import namespace="http://schemas.datacontract.org/2004/07/SICAT_Service.Classes"/>
+<xs:element name="GetPersonByName">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="pagination" type="xs:int"/>
+<xs:element minOccurs="0" name="countResult" type="xs:int"/>
+<xs:element minOccurs="0" name="userID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="userName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="IPUser" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="sourceCountry" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetPersonByNameResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SICAT_Service.Classes" minOccurs="0" name="GetPersonByNameResult" nillable="true" type="q1:Response"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetHomologationTables">
+<xs:complexType>
+<xs:sequence/>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetHomologationTablesResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SICAT_Service.Classes" minOccurs="0" name="GetHomologationTablesResult" nillable="true" type="q2:ArrayOfHomologationTables"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/">
+<xs:element name="anyType" nillable="true" type="xs:anyType"/>
+<xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+<xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+<xs:element name="boolean" nillable="true" type="xs:boolean"/>
+<xs:element name="byte" nillable="true" type="xs:byte"/>
+<xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+<xs:element name="decimal" nillable="true" type="xs:decimal"/>
+<xs:element name="double" nillable="true" type="xs:double"/>
+<xs:element name="float" nillable="true" type="xs:float"/>
+<xs:element name="int" nillable="true" type="xs:int"/>
+<xs:element name="long" nillable="true" type="xs:long"/>
+<xs:element name="QName" nillable="true" type="xs:QName"/>
+<xs:element name="short" nillable="true" type="xs:short"/>
+<xs:element name="string" nillable="true" type="xs:string"/>
+<xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+<xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+<xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+<xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+<xs:element name="char" nillable="true" type="tns:char"/>
+<xs:simpleType name="char">
+<xs:restriction base="xs:int"/>
+</xs:simpleType>
+<xs:element name="duration" nillable="true" type="tns:duration"/>
+<xs:simpleType name="duration">
+<xs:restriction base="xs:duration">
+<xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+<xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+<xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:element name="guid" nillable="true" type="tns:guid"/>
+<xs:simpleType name="guid">
+<xs:restriction base="xs:string">
+<xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:attribute name="FactoryType" type="xs:QName"/>
+<xs:attribute name="Id" type="xs:ID"/>
+<xs:attribute name="Ref" type="xs:IDREF"/>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/SICAT_Service.Classes" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SICAT_Service.Classes">
+<xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+<xs:complexType name="Response">
+<xs:sequence>
+<xs:element minOccurs="0" name="PersonList" nillable="true" type="tns:ArrayOfPerson"/>
+<xs:element minOccurs="0" name="TotalPagination" type="xs:int"/>
+<xs:element minOccurs="0" name="TotalRecords" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="Response" nillable="true" type="tns:Response"/>
+<xs:complexType name="ArrayOfPerson">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="Person" nillable="true" type="tns:Person"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfPerson" nillable="true" type="tns:ArrayOfPerson"/>
+<xs:complexType name="Person">
+<xs:sequence>
+<xs:element minOccurs="0" name="AcademicLevel" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Adress" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="AliasList" nillable="true" type="tns:ArrayOfAlias"/>
+<xs:element minOccurs="0" name="BirthDate" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="BirthPlace" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CaptureOrderList" nillable="true" type="tns:ArrayOfCaptureOrder"/>
+<xs:element minOccurs="0" name="CharacteristicsList" nillable="true" type="tns:ArrayOfCharacteristics"/>
+<xs:element minOccurs="0" name="CivilState" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="ContributorsList" nillable="true" type="tns:ArrayOfContributors"/>
+<xs:element minOccurs="0" name="CriminalArea" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CriminalOrganizationList" nillable="true" type="tns:ArrayOfCriminalOrganization"/>
+<xs:element minOccurs="0" name="CriminalRecordList" nillable="true" type="tns:ArrayOfCriminalRecord"/>
+<xs:element minOccurs="0" name="CriminalVisits" nillable="true" type="tns:ArrayOfCriminalVisits"/>
+<xs:element minOccurs="0" name="CurrentAdress" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CurrentPhysicalState" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="DeportationHistoryList" nillable="true" type="tns:ArrayOfDeportationHistory"/>
+<xs:element minOccurs="0" name="DocumentList" nillable="true" type="tns:ArrayOfDocuments"/>
+<xs:element minOccurs="0" name="FamilyTreeList" nillable="true" type="tns:ArrayOfFamilyTree"/>
+<xs:element minOccurs="0" name="FingerPrints" nillable="true" type="tns:ArrayOfFingerPrints"/>
+<xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="ImmovablePropertyList" nillable="true" type="tns:ArrayOfImmovableProperty"/>
+<xs:element minOccurs="0" name="InternationalLinksList" nillable="true" type="tns:ArrayOfInternationalLinks"/>
+<xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="LastUpdateChange" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="LegalStatus" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="MarriedName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="MedicalHistory" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="NacionalityList" nillable="true" type="tns:ArrayOfNacionality"/>
+<xs:element minOccurs="0" name="OrganizationRange" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="OrganizationRole" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="OtherNameList" nillable="true" type="tns:ArrayOfOtherNames"/>
+<xs:element minOccurs="0" name="ParticularSignsList" nillable="true" type="tns:ArrayOfParticularSigns"/>
+<xs:element minOccurs="0" name="PersonID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string"/>
+<xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PhotoList" nillable="true" type="q1:ArrayOfstring"/>
+<xs:element minOccurs="0" name="PrisionRecordsList" nillable="true" type="tns:ArrayOfPrisionRecords"/>
+<xs:element minOccurs="0" name="Profession" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="SourceCountry" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="SurName" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="Person" nillable="true" type="tns:Person"/>
+<xs:complexType name="ArrayOfAlias">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="Alias" nillable="true" type="tns:Alias"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfAlias" nillable="true" type="tns:ArrayOfAlias"/>
+<xs:complexType name="Alias">
+<xs:sequence>
+<xs:element minOccurs="0" name="AliasName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PersonID" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="Alias" nillable="true" type="tns:Alias"/>
+<xs:complexType name="ArrayOfCaptureOrder">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="CaptureOrder" nillable="true" type="tns:CaptureOrder"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfCaptureOrder" nillable="true" type="tns:ArrayOfCaptureOrder"/>
+<xs:complexType name="CaptureOrder">
+<xs:sequence>
+<xs:element minOccurs="0" name="AttachedtFile" nillable="true" type="tns:ArrayOfAttachementFile"/>
+<xs:element minOccurs="0" name="Crime" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="IssueDate" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="IssuerCourt" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PersonID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Status" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="CaptureOrder" nillable="true" type="tns:CaptureOrder"/>
+<xs:complexType name="ArrayOfAttachementFile">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="AttachementFile" nillable="true" type="tns:AttachementFile"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfAttachementFile" nillable="true" type="tns:ArrayOfAttachementFile"/>
+<xs:complexType name="AttachementFile">
+<xs:sequence>
+<xs:element minOccurs="0" name="AttachementDoc" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="AttachementFileID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Name" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="AttachementFile" nillable="true" type="tns:AttachementFile"/>
+<xs:complexType name="ArrayOfCharacteristics">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="Characteristics" nillable="true" type="tns:Characteristics"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfCharacteristics" nillable="true" type="tns:ArrayOfCharacteristics"/>
+<xs:complexType name="Characteristics">
+<xs:sequence>
+<xs:element minOccurs="0" name="Description" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="TypeID" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="Characteristics" nillable="true" type="tns:Characteristics"/>
+<xs:complexType name="ArrayOfContributors">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="Contributors" nillable="true" type="tns:Contributors"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfContributors" nillable="true" type="tns:ArrayOfContributors"/>
+<xs:complexType name="Contributors">
+<xs:sequence>
+<xs:element minOccurs="0" name="Adress" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Alias" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Function" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PersonID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Photo" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Profession" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Relation" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="Contributors" nillable="true" type="tns:Contributors"/>
+<xs:complexType name="ArrayOfCriminalOrganization">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="CriminalOrganization" nillable="true" type="tns:CriminalOrganization"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfCriminalOrganization" nillable="true" type="tns:ArrayOfCriminalOrganization"/>
+<xs:complexType name="CriminalOrganization">
+<xs:sequence>
+<xs:element minOccurs="0" name="Location" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Name" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PersonID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="SubOrganization" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="CriminalOrganization" nillable="true" type="tns:CriminalOrganization"/>
+<xs:complexType name="ArrayOfCriminalRecord">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="CriminalRecord" nillable="true" type="tns:CriminalRecord"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfCriminalRecord" nillable="true" type="tns:ArrayOfCriminalRecord"/>
+<xs:complexType name="CriminalRecord">
+<xs:sequence>
+<xs:element minOccurs="0" name="Crime" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Date" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Description" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="GeoReference" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Location" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="CriminalRecord" nillable="true" type="tns:CriminalRecord"/>
+<xs:complexType name="ArrayOfCriminalVisits">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="CriminalVisits" nillable="true" type="tns:CriminalVisits"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfCriminalVisits" nillable="true" type="tns:ArrayOfCriminalVisits"/>
+<xs:complexType name="CriminalVisits">
+<xs:sequence>
+<xs:element minOccurs="0" name="Name" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PenalCenter" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PersonID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Photo" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Reason" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="VisitDate" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="CriminalVisits" nillable="true" type="tns:CriminalVisits"/>
+<xs:complexType name="ArrayOfDeportationHistory">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="DeportationHistory" nillable="true" type="tns:DeportationHistory"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfDeportationHistory" nillable="true" type="tns:ArrayOfDeportationHistory"/>
+<xs:complexType name="DeportationHistory">
+<xs:sequence>
+<xs:element minOccurs="0" name="Country" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Date" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Observation" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PersonID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Reason" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="DeportationHistory" nillable="true" type="tns:DeportationHistory"/>
+<xs:complexType name="ArrayOfDocuments">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="Documents" nillable="true" type="tns:Documents"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfDocuments" nillable="true" type="tns:ArrayOfDocuments"/>
+<xs:complexType name="Documents">
+<xs:sequence>
+<xs:element minOccurs="0" name="Description" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="DocumentNumber" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="DocumentType" type="xs:int"/>
+<xs:element minOccurs="0" name="ExpirationDate" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Image" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="IssueDate" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="IssuePlace" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PersonID" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="Documents" nillable="true" type="tns:Documents"/>
+<xs:complexType name="ArrayOfFamilyTree">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="FamilyTree" nillable="true" type="tns:FamilyTree"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfFamilyTree" nillable="true" type="tns:ArrayOfFamilyTree"/>
+<xs:complexType name="FamilyTree">
+<xs:sequence>
+<xs:element minOccurs="0" name="Adress" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CriminalLink" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Image" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Name" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PersonID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Relationship" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="FamilyTree" nillable="true" type="tns:FamilyTree"/>
+<xs:complexType name="ArrayOfFingerPrints">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="FingerPrints" nillable="true" type="tns:FingerPrints"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfFingerPrints" nillable="true" type="tns:ArrayOfFingerPrints"/>
+<xs:complexType name="FingerPrints">
+<xs:sequence>
+<xs:element minOccurs="0" name="Format" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Image" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PersonID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Type" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="FingerPrints" nillable="true" type="tns:FingerPrints"/>
+<xs:complexType name="ArrayOfImmovableProperty">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="ImmovableProperty" nillable="true" type="tns:ImmovableProperty"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfImmovableProperty" nillable="true" type="tns:ArrayOfImmovableProperty"/>
+<xs:complexType name="ImmovableProperty">
+<xs:sequence>
+<xs:element minOccurs="0" name="Description" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Image" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Location" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PersonID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="State" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Type" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ImmovableProperty" nillable="true" type="tns:ImmovableProperty"/>
+<xs:complexType name="ArrayOfInternationalLinks">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="InternationalLinks" nillable="true" type="tns:InternationalLinks"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfInternationalLinks" nillable="true" type="tns:ArrayOfInternationalLinks"/>
+<xs:complexType name="InternationalLinks">
+<xs:sequence>
+<xs:element minOccurs="0" name="Adress" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Alias" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Function" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Image" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Membership" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PersonID" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="InternationalLinks" nillable="true" type="tns:InternationalLinks"/>
+<xs:complexType name="ArrayOfNacionality">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="Nacionality" nillable="true" type="tns:Nacionality"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfNacionality" nillable="true" type="tns:ArrayOfNacionality"/>
+<xs:complexType name="Nacionality">
+<xs:sequence>
+<xs:element minOccurs="0" name="Country" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PersonID" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="Nacionality" nillable="true" type="tns:Nacionality"/>
+<xs:complexType name="ArrayOfOtherNames">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="OtherNames" nillable="true" type="tns:OtherNames"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfOtherNames" nillable="true" type="tns:ArrayOfOtherNames"/>
+<xs:complexType name="OtherNames">
+<xs:sequence>
+<xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="MarriedName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PersonID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="SurName" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="OtherNames" nillable="true" type="tns:OtherNames"/>
+<xs:complexType name="ArrayOfParticularSigns">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="ParticularSigns" nillable="true" type="tns:ParticularSigns"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfParticularSigns" nillable="true" type="tns:ArrayOfParticularSigns"/>
+<xs:complexType name="ParticularSigns">
+<xs:sequence>
+<xs:element minOccurs="0" name="Date" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Description" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Image" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Location" type="xs:int"/>
+<xs:element minOccurs="0" name="Meaning" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PersonID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Type" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ParticularSigns" nillable="true" type="tns:ParticularSigns"/>
+<xs:complexType name="ArrayOfPrisionRecords">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="PrisionRecords" nillable="true" type="tns:PrisionRecords"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfPrisionRecords" nillable="true" type="tns:ArrayOfPrisionRecords"/>
+<xs:complexType name="PrisionRecords">
+<xs:sequence>
+<xs:element minOccurs="0" name="AdmissionDate" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Crime" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="DepartureDate" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="DetentionCenter" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="FileImage" nillable="true" type="tns:ArrayOfAttachementFile"/>
+<xs:element minOccurs="0" name="Observation" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PersonID" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="PrisionRecords" nillable="true" type="tns:PrisionRecords"/>
+<xs:complexType name="ArrayOfHomologationTables">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="HomologationTables" nillable="true" type="tns:HomologationTables"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfHomologationTables" nillable="true" type="tns:ArrayOfHomologationTables"/>
+<xs:complexType name="HomologationTables">
+<xs:sequence>
+<xs:element minOccurs="0" name="Code" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="ID" type="xs:int"/>
+<xs:element minOccurs="0" name="Name" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="ReferenceTable" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="HomologationTables" nillable="true" type="tns:HomologationTables"/>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+<xs:complexType name="ArrayOfstring">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring"/>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="ISICAT_Service_GetPersonByName_InputMessage">
+<wsdl:part name="parameters" element="tns:GetPersonByName"/>
+</wsdl:message>
+<wsdl:message name="ISICAT_Service_GetPersonByName_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetPersonByNameResponse"/>
+</wsdl:message>
+<wsdl:message name="ISICAT_Service_GetHomologationTables_InputMessage">
+<wsdl:part name="parameters" element="tns:GetHomologationTables"/>
+</wsdl:message>
+<wsdl:message name="ISICAT_Service_GetHomologationTables_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetHomologationTablesResponse"/>
+</wsdl:message>
+<wsdl:portType name="ISICAT_Service">
+<wsdl:operation name="GetPersonByName">
+<wsdl:input wsaw:Action="http://tempuri.org/ISICAT_Service/GetPersonByName" message="tns:ISICAT_Service_GetPersonByName_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/ISICAT_Service/GetPersonByNameResponse" message="tns:ISICAT_Service_GetPersonByName_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetHomologationTables">
+<wsdl:input wsaw:Action="http://tempuri.org/ISICAT_Service/GetHomologationTables" message="tns:ISICAT_Service_GetHomologationTables_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/ISICAT_Service/GetHomologationTablesResponse" message="tns:ISICAT_Service_GetHomologationTables_OutputMessage"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="BasicHttpBinding_ISICAT_Service" type="tns:ISICAT_Service">
+<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="GetPersonByName">
+<soap:operation soapAction="http://tempuri.org/ISICAT_Service/GetPersonByName" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="GetHomologationTables">
+<soap:operation soapAction="http://tempuri.org/ISICAT_Service/GetHomologationTables" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="MainService">
+<wsdl:port name="BasicHttpBinding_ISICAT_Service" binding="tns:BasicHttpBinding_ISICAT_Service">
+<soap:address location="http://iisdevscapri.eastus.cloudapp.azure.com:8081/SICAT_Service.svc"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>
